@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BackOffice</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/:css/saldo.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <!-- Hamburger Menu -->
+            <button class="btn btn-outline-light" id="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <span class="navbar-brand ms-3">BackOffice iFood</span>
+    
+            <!-- Right side user management button -->
+            <div class="d-flex justify-content-end ms-auto">
+                <button class="btn btn-outline-light d-flex align-items-center">
+                    <i class="fas fa-user"></i>
+                    <span class="ms-2">User Manager</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="d-flex" id="wrapper">
+ 
+        <div class="bg-danger text-white" id="sidebar-wrapper">
+          
+            <div class="sidebar-user-profile text-center py-4">
+                <i class="fas fa-user-circle fa-5x"></i> 
+                <div class="username mt-2">Username</div> 
+                <div class="user-info">Testes Ltda.</div> 
+            </div>
+            
+            <div class="list-group list-group-flush">
+                <a href="dashboard.html" class="list-group-item list-group-item-action bg-danger text-white">
+                    <i class="fas fa-chart-line"></i> DashBoards
+                </a>
+                <a href="saldo.html" class="list-group-item list-group-item-action bg-danger text-white">
+                    <i class="fas fa-wallet"></i> Saldo e Transações
+                </a>
+                <a href="gestao.html" class="list-group-item list-group-item-action bg-danger text-white">
+                    <i class="fas fa-money-bill-wave"></i> Gestão de Pagamentos
+                </a>
+                <a href="relatorios.html" class="list-group-item list-group-item-action bg-danger text-white">
+                    <i class="fas fa-file-alt"></i> Relatório e Análise Financeira
+                </a>
+                <a href="#" class="list-group-item list-group-item-action bg-danger text-white">
+                    <i class="fas fa-shield-alt"></i> Segurança e Controle de Acesso
+                </a>
+            </div>
+        </div>
+
+        <main class="col-12 col-md-9 p-4">
+            <h2 class="mb-4">Saldo e Transações</h2>
+            <div class="data-container bg-light p-4 rounded">
+                <div class="filters mb-4">
+                    <form id="filter-form">
+                        <div class="row">
+                            <div class="col-md-3 mb-2">
+                                <input type="date" id="filter-date" class="form-control" placeholder="Data">
+                            </div>
+                            <div class="col-md-3 mb-2">
+                                <select id="filter-type" class="form-control">
+                                    <option value="">Tipo</option>
+                                    <option value="Crédito">Crédito</option>
+                                    <option value="Débito">Débito</option>
+                                    <option value="PIX">PIX</option>
+                                    <option value="Transferência">Transferência</option>
+                                    <option value="Dinheiro">Dinheiro</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3 mb-2">
+                                <input type="number" id="filter-value" class="form-control" placeholder="Valor" min="0" step="0.01">
+                            </div>
+                            <div class="col-md-3 mb-2">
+                                <button type="submit" class="btn btn-danger w-100">Buscar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                
+    
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Data</th>
+                            <th>Valor</th>
+                            <th>Tipo de Transação</th>
+                            <th>Status</th>
+                            <th>Estabelecimento</th>
+                            <th class="ultimo">Remetente</th>
+                        </tr>
+                    </thead>
+                    <tbody id="transaction-table-body">
+                        <tr>
+                            <td>001</td>
+                            <td>2024-09-15</td>
+                            <td>R$ 150,00</td>
+                            <td>Crédito</td>
+                            <td>Completo</td>
+                            <td>Loja A</td>
+                            <td class="ultimo">Usuário A</td>
+                        </tr>
+                        <tr>
+                            <td>002</td>
+                            <td>2024-09-16</td>
+                            <td>R$ 200,00</td>
+                            <td>Débito</td>
+                            <td>Pendente</td>
+                            <td>Loja B</td>
+                            <td class="ultimo">Usuário B</td>
+                        </tr>
+                        <tr>
+                            <td>003</td>
+                            <td>2024-09-16</td>
+                            <td>R$ 289,00</td>
+                            <td>Transferência</td>
+                            <td>Completo</td>
+                            <td>Loja B</td>
+                            <td class="ultimo">Usuário C</td>
+                        </tr>
+                        <tr> 
+                            <td>004</td>
+                            <td>2024-09-17</td>
+                            <td>R$ 250,00</td>
+                            <td>PIX</td>
+                            <td>Completo</td>
+                            <td>Loja B</td>
+                            <td class="ultimo">Usuário D</td>
+                        </tr>
+                        <tr>
+                            <td>005</td>
+                            <td>2024-09-18</td>
+                            <td>R$ 300,00</td>
+                            <td>Dinheiro</td>
+                            <td>Completo</td>
+                            <td>Loja B</td>
+                            <td class="ultimo">Usuário E</td>
+                        </tr>
+                        <tr>
+                            <td>006</td>
+                            <td>2024-09-19</td>
+                            <td>R$ 400,00</td>
+                            <td>Débito</td>
+                            <td>Completo</td>
+                            <td>Loja B</td>
+                            <td class="ultimo">Usuário F</td>
+                        </tr>
+                        <tr>
+                            <td>007</td>
+                            <td>2024-09-20</td>
+                            <td>R$ 500,00</td>
+                            <td>Crédito</td>
+                            <td>Completo</td>
+                            <td>Loja B</td>
+                            <td class="ultimo">Usuário G</td>
+                        </tr>
+                        <tr>
+                            <td>008</td>
+                            <td>2024-09-19</td>
+                            <td>R$ 600,00</td>
+                            <td>PIX</td>
+                            <td>Pendente</td>
+                            <td>Loja B</td>
+                            <td class="ultimo">Usuário H</td>
+                        </tr>
+                        <tr>
+                            <td>009</td>
+                            <td>2024-09-17</td>
+                            <td>R$ 700,00</td>
+                            <td>Transferência</td>
+                            <td>Completo</td>
+                            <td>Loja B</td>
+                            <td class="ultimo">Usuário I</td>
+                        </tr>
+                    </tbody>
+                </table>
+    
+                <div class="table-actions text-right">
+                    <button class="btn btn-secondary">Exportar</button>
+                    <button class="btn btn-secondary">Ver Mais</button>
+                </div>
+            </div>
+        </main>
+    </div>
+    </div>
+    
+    <script src="/:js/saldo.js"></script>
+    
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
